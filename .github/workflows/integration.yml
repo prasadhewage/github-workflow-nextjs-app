@@ -24,7 +24,7 @@ jobs:
      - name: download artifact
        uses: actions/download-artifact@v4
        with:
-        name: static-site
+        name: next-static-site
      - name: test artifact download
        run: ls -R
 
