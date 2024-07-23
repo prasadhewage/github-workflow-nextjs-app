@@ -40,3 +40,12 @@ jobs:
        with:
         tag_name: ${{ github.run_number }}
         release_name: Release ${{ github.run_number }}
+     - name: Upload Release Assets
+       uses: actions/upload-release-asset@v1
+       env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       with:
+        upload_url: ${{ steps.next_app_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above
+        asset_path: ./assets.zip
+        asset_name: assets.zip
+        asset_content_type: application/zip
