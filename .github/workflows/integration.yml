@@ -11,17 +11,11 @@ jobs:
           run: npm install
         - name: Build app assets
           run: npm run build
-        - name: Zip assets
-          uses: thedoctor0/zip-release@0.7.5
-          with:
-            path: .next
-            type: 'zip'
-            filename: 'assets.zip'
         - name: Upload static site content
           uses: actions/upload-artifact@v4
           with:
             name: next-static-site
-            path: assets.zip
+            path: .next
   release-project:
     name: Download static assets
     runs-on: ubuntu-latest
@@ -33,4 +27,9 @@ jobs:
         name: next-static-site
      - name: test artifact download
        run: ls -R
+     - name: Zip assets
+       uses: thedoctor0/zip-release@0.7.5
+       with:
+         type: 'zip'
+         filename: 'assets.zip'
 
