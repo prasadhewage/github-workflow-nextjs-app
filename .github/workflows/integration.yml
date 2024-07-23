@@ -32,4 +32,11 @@ jobs:
        with:
          type: 'zip'
          filename: 'assets.zip'
-
+     - name: Create Release
+       id: next_app_release
+       uses: actions/create-release@v1
+       env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions
+       with:
+        tag_name: ${{ github.run_number }}
+        release_name: Release ${{ github.run_number }}
